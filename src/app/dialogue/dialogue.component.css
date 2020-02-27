@@ -1,0 +1,56 @@
+.welcome{
+    padding: 2em 0 0; 
+    color: #8B4513;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 1em;
+}
+div{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+.inputStranger{
+    padding: 0.5em;
+    font-size: 1em;
+}
+.enterStranger{
+    background-color: #8B4513;
+    color: beige;
+    border: none; 
+    padding: 0.5em 0.5em 0.5em;
+    font-size: 1em;
+}
+.name{
+    padding: 2em;
+    color: #8B4513;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.8em;
+}
+.underTitle{
+    color: #8B4513;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.enterStranger{
+    background-color: #8B4513;
+    color: beige;
+    border: none; 
+    padding: 0.5em 0.5em 0.5em;
+    font-size: 1em;
+}
+.beverages{
+    color: #8B4513;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0.8em;
+
+}
+.choseBeverages{
+    background-color: #8B4513;
+    color: beige;
+    border: none; 
+    padding: 0.2em 0.4em 0.2em;
+    font-size: 0.8em;
+}

@@ -1,0 +1,18 @@
+<section *ngIf="displayWelcome">
+<h2 class="welcome">{{welcomeStranger}}</h2>
+<div><input placeholder="Firstname" class="inputStranger" (keyup)="keyFirstName($event)"><input placeholder="Lastname" class="inputStranger" (keyup)="keyLastName($event)"><button class="enterStranger" (click)="enterName()">Enter</button></div>
+</section>
+
+<div *ngIf="displayWhatCanIdo">
+    <h2 class="welcome">{{whatCanIdo}}</h2>
+</div>
+
+<ng-container *ngIf="displayBeverages">
+    <p class="beverages" *ngFor="let data of beverageData">{{data}}<button class="choseBeverages" (click)=chosenBeveragesButton($event)>+</button></p>
+</ng-container>
+
+<h2 class="welcome">{{order}}</h2>   
+
+
+<app-select-beverage (beveragesEvent)="reciveBeverages($event)"></app-select-beverage>
+<app-the-usual></app-the-usual>

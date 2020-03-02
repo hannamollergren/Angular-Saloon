@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { SelectBeverageComponent } from './select-beverage/select-beverage.component';
 import { TheUsualComponent } from './the-usual/the-usual.component';
+import { RightToBeForgottenComponent } from './right-to-be-forgotten/right-to-be-forgotten.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TheUsualComponent } from './the-usual/the-usual.component';
     HeaderComponent,
     DialogueComponent,
     SelectBeverageComponent,
-    TheUsualComponent
+    TheUsualComponent,
+    RightToBeForgottenComponent
   ],
   imports: [
     BrowserModule

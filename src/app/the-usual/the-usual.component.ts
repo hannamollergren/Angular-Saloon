@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-the-usual',
@@ -6,17 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./the-usual.component.css']
 })
 export class TheUsualComponent implements OnInit {
-  chosenBeverage: string;
-  thsUsual: string; // skicka till dialogue med värde?? 
+  // Tar emot valda dryck från service
+  theUsual: string = this.dataService.getChosenBeverage();
+  displayTheUsual: boolean = true;
 
- 
-  
-  constructor() { }
+  // theUsualThanks button
+  theUsualThanks(){
+    this.theUsual = this.dataService.getChosenBeverage();
+    this.displayTheUsual = false;
+    console.log("the usual comp, hämtad thechosenbev från serice", this.theUsual);
+    this.theUsualEvent.emit(this.theUsual)
+  }
 
-  // Tar emot valda dryck från localStorage
+  @Output()theUsualEvent = new EventEmitter<string>();
+
+  constructor(public dataService: DataService) {console.log("constructor the-usual", this.theUsual) 
+  ;}
+
+    
+
   ngOnInit(): void {
-    this.chosenBeverage = localStorage.getItem('chosenBeverage');
-    console.log("the usual choseBeverage", this.chosenBeverage);
+    
+
+  
   }
 
 }

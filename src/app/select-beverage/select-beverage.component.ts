@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
+import { Beverage } from '../beverage';
+
 
 @Component({
   selector: 'app-select-beverage',
@@ -7,13 +9,11 @@ import { DataService } from '../data.service';
   styleUrls: ['./select-beverage.component.css']
 })
 export class SelectBeverageComponent implements OnInit {
-  beverageData:string[];
+  beverageData: Beverage[];
 
   // Beorenden från service filen
   constructor(public beverageService: DataService) {console.log("constructor beverage");
 }
-
-//SKICKA DATA TILL DIALGOUE!!!!
 
   // Hämtar data från service filen
   ngOnInit(): void {

@@ -15,6 +15,7 @@ export class SelectBeverageComponent implements OnInit {
   constructor(public beverageService: DataService) {console.log("constructor beverage");
 }
 
+
   // Hämtar data från service filen
   ngOnInit(): void {
     this.beverageData = this.beverageService.getBeverageData();

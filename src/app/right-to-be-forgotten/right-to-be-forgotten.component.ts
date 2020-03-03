@@ -7,17 +7,21 @@ import { DataService } from '../data.service';
   styleUrls: ['./right-to-be-forgotten.component.css']
 })
 export class RightToBeForgottenComponent implements OnInit {
-  forgottenUser: boolean = false;
+  welcomeStranger: string;
+  displayWelcome: boolean; // Skicka till dialogue
 
-  forget(){
-    
-    this.forgottenUser = true;
-    console.log("forget comp forget click", this.forgottenUser );
+
+  forgetButton(){
+    console.log("forget comp click");
+    this.welcomeStranger = "Got it! Who are you again?"
+    console.log("right to forgotten comp", this.welcomeStranger);
+    this.displayWelcome = true;
     this.beverageService.deleteLocalStorage();
-    this.forgetMe.emit(this.forgottenUser);
-    
+    this.forgetUser.emit(this.welcomeStranger);
+   /*  this.displayForgotten.emit(this.displayWelcome);  */
   }
-  @Output()forgetMe = new EventEmitter<boolean>();
+  @Output()forgetUser = new EventEmitter<string>(); 
+  /* @Output()displayForgotten = new EventEmitter<boolean>();  */  
 
   constructor(public beverageService: DataService) { }
 

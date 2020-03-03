@@ -7,13 +7,14 @@ import { Component, Input, Output, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'Lab1Angular';
-  forgottenUser: boolean = false;
+  welcomeStranger: string;
+  displayWelcome: boolean;
 
+  //! Forget user
   handleForgetUser(event){
-    console.log("app comp forgottenUser", this.forgottenUser);
-    this.forgottenUser = event;
+    this.welcomeStranger = event;  
   }
-  ngOnInit(){    
-  }
+
+  ngOnInit(){}
 }
 

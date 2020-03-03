@@ -8,7 +8,7 @@
 
 
 
-<section *ngIf="displayWelcome">
+<section *ngIf="displayWelcome"> <!--  den ska vara true när man klickar på forget me -->
 <h2 class="welcome">{{welcomeStranger}}</h2>
 <div><input placeholder="Firstname" class="inputStranger" (keyup)="keyFirstName($event)"><input placeholder="Lastname" class="inputStranger" (keyup)="keyLastName($event)"><button class="enterStranger" (click)="enterName()">Enter</button></div>
 </section>
@@ -18,17 +18,26 @@
 <div *ngIf="displayWhatCanIdo">
     <h2 class="welcome">{{whatCanIdo}}</h2>
 </div>
+<ng-container>
+    <div *ngIf="displayTheUsual">
+        <h2 class="welcomeReturning">
+        {{welcomeReturningVisitor}}</h2>
+    </div>
 
-<div *ngIf="displayTheUsual">
-    <h2 class="welcomeReturning">{{welcomeReturningVisitor}}</h2><app-the-usual (theUsualEvent)="reciveTheUsual($event)"></app-the-usual>
+    <div *ngIf="displayTheUsualButton">
+        <app-the-usual (theUsualEvent)="reciveTheUsual($event)"></app-the-usual> 
+    </div>
 
+    <div *ngIf="displayTheUsual"><h2 class="or">OR...</h2></div>
     <h2 class="welcome">{{orderUsual}}</h2> 
-</div>
-
-    
+</ng-container>
 
 <ng-container *ngIf="displayBeverages">
     <p class="beverages" *ngFor="let data of beverageData">{{data.name}}<button class="choseBeverages" (click)= chosenBeveragesButton(data.name)>+</button></p>
+    <div>
+        <input placeholder="Your choice" (keyup)=ownChoiceInput($event)>
+        <button class="enterStranger" (click)="ownChoiceButton()">Enter</button>
+    </div>
 </ng-container>
 
 <h2 class="welcome">{{order}}</h2> 

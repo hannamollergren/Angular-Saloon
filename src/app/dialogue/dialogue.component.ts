@@ -8,24 +8,27 @@ import { Beverage } from '../beverage';
   styleUrls: ['./dialogue.component.css']
 })
 export class DialogueComponent implements OnInit {
-  welcomeStranger: string = "Howdy, stranger. Haven't seen your face around here before. What's your name?";
-  displayWelcome: boolean = true;
-  inputFirstName: string = this.dataService.getFirstName();
+  displayWelcome: boolean = true; //! true när man klickar på forget me
+  @Input() welcomeStranger: string;
+  inputFirstName: string = "name";
   inputLastName: string;
   @Input() beverageData: Beverage[];
   displayWhatCanIdo: boolean = false;
   displayBeverages: boolean = false;
   whatCanIdo: string;
   chosenBeverage: string;
+  ownChoice: string;
   order: string; //One <chosen beverage>, coming right up!
   displayTheUsual: boolean = false;
   theUsual: string;
-  @Input() forgottenUser: boolean;
   displayEdit: boolean = false;
   displayEditInputButton:boolean = false;
   editNameInputValue: string; 
-  welcomeReturningVisitor: string = "Hello again, " + this.inputFirstName + "! The usual? "
+  welcomeReturningVisitor: string = "Welcome back!";
   orderUsual: string;
+  displayTheUsualButton: boolean;
+
+  
 
   
   // Input FirstName
@@ -48,18 +51,18 @@ export class DialogueComponent implements OnInit {
     this.displayWelcome = false;
     this.displayWhatCanIdo = true;
     this.displayBeverages = true;
-    this.whatCanIdo = "Alright " + this.inputFirstName + ", what can I do you for?";    
-
-    
+    this.whatCanIdo = "Alright " + this.inputFirstName + ", what can I do you for?";   
+    console.log("displaywelcome", this.displayWelcome); 
   }
 
-  // Tar emot BeveragesData från beverages component - skicka till localstorage
+  // Tar emot BeveragesData från beverages component
   reciveBeverages(event){
     this.beverageData = event;
     console.log('beveragesData dialogue', this.beverageData);
   }
 
   // Button choseBeverage - användarens dryck
+  //! Skicka med ownChoice
   chosenBeveragesButton(name: string){
     this.chosenBeverage = name; 
     console.log('chosen bev', this.chosenBeverage);
@@ -67,15 +70,33 @@ export class DialogueComponent implements OnInit {
     this.displayWhatCanIdo = false;
     this.displayBeverages = false;
     this.displayTheUsual = false
-    // Skickar till servicefilen 
-    this.dataService.updatedLastBeverage(this.chosenBeverage);
     this.displayEdit = false;
     this.displayEditInputButton = false;
-   
+    this.displayTheUsualButton = false;
+    // Skickar till servicefilen 
+    this.dataService.updatedLastBeverage(this.chosenBeverage);
   }
 
+//!
+  // OwnChice Input
+  ownChoiceInput(event){
+    this.ownChoice = event.target.value;
+    console.log("dia comp ownchoiceinput", this.ownChoice);
+  }
 
-  ///////
+  //OwnChoice Button
+  ownChoiceButton(){
+    this.dataService.handleOwnChoice(this.ownChoice);
+    console.log("dia comp ownchoice button click");
+
+    this.beverageData = this.dataService.getBeverageData();
+    console.log("dia comp ownchoice button new beverageData", this.beverageData);
+    
+      
+    
+  }
+//!
+
 
   // EditName button
   editName(){
@@ -87,7 +108,6 @@ export class DialogueComponent implements OnInit {
   editNameInput(event){
     this.editNameInputValue = event.target.value;
     console.log('editNameINnput', this.editNameInputValue);
-    /* this.dataService.updatedEditName(this.inputFirstName);  */
   }
 
   // EditNameButton
@@ -99,11 +119,11 @@ export class DialogueComponent implements OnInit {
     this.dataService.updatedFirstName(this.editNameInputValue);
     console.log('editnamebutton dialouge comp', this.editNameInputValue)
     this.inputFirstName = this.dataService.getFirstName();
+    this.welcomeReturningVisitor = "Hello again, " + this.inputFirstName + "! The usual?"
     console.log("updated inputvalue dialog", this.inputFirstName);
   }
 
-  //////////
-
+  // Tar emot användarens theUsual från the-usual comp
   reciveTheUsual(event){
     this.theUsual = event;
     console.log("dia comp recivetheUsual", this.theUsual);
@@ -111,27 +131,23 @@ export class DialogueComponent implements OnInit {
     this.displayBeverages = false;
     this.displayEdit = false;
     this.displayEditInputButton = false;
+    this.displayTheUsual = false;
     this.welcomeReturningVisitor = "";
+    //TODO
+      if(this.chosenBeverage == null){
+        this.displayTheUsualButton = false;
+      }
+      else{ 
+        this.displayTheUsualButton = true;
+      }
   }
-
-  /* theUsual(){
-
-  } */
-  
-  /* removeButton(){
-    
-    if(this.forgottenUser == true)
-    {
-      this.welcomeStranger = "hej";
-      this.displayWelcome = true;
-    }
-  } */
-
-  
 
   constructor(public dataService: DataService) {}
 
   ngOnInit(): void {
+    this.welcomeStranger = "Howdy, stranger. Haven't seen your face around here before. What's your name?"; 
+    this.inputFirstName = this.dataService.getFirstName();
+    this.welcomeReturningVisitor = "Hello again, " + this.inputFirstName + "! The usual?"
     if(localStorage.getItem('firstName') == null){
       this.displayWelcome = true;
       this.displayEdit=false;
@@ -142,7 +158,10 @@ export class DialogueComponent implements OnInit {
       this.displayBeverages = true;
       this.displayWelcome = false;
       this.displayEdit=true;
-      this.displayEditInputButton = false
+      this.displayEditInputButton = false;
+
+      //TODO
+      this.displayTheUsualButton = true;
     }  
   }
 

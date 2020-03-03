@@ -6,7 +6,7 @@ import { Beverage } from './beverage';
   providedIn: 'root'
 })
 export class DataService {
- 
+  newBeverage; // ownChoice object class.property
   
   beverageData: Beverage[] = [
     {name: 'Fanta'}, {name: 'Coca Cola'}, {name: 'Sprite'}, {name: 'Water'}, {name: 'Coffee'}, {name: 'Tea'}];
@@ -41,7 +41,6 @@ export class DataService {
       console.log('updatedLastbev', drink); 
     }
 
-
   // Hämtar firstname och getCHosenBev
     getFirstName(){
       return localStorage.getItem('firstName');
@@ -50,6 +49,20 @@ export class DataService {
       return localStorage.getItem('chosenBeverage');
     }
 
+//! 
+    // User ownChoice från dialogue.component
+    handleOwnChoice(drink){
+      localStorage.setItem('ownChoice', drink);
+      this.newBeverage = {name: drink}
+      this.beverageData.push(this.newBeverage);
+      console.log("handleOwnChoice service filen, push ownchoice to beverageData", this.beverageData);
+      localStorage.setItem('beverages', JSON.stringify(this.beverageData));
+      console.log("handleOwnChoice service filen, new beverageData", this.beverageData);
+      
+
+
+    }
+//!
   // Remove LocalStorage
     deleteLocalStorage(){
       localStorage.removeItem('firstName');

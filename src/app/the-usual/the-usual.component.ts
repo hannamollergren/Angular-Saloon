@@ -12,24 +12,18 @@ export class TheUsualComponent implements OnInit {
   displayTheUsual: boolean = true;
 
   // theUsualThanks button
-  theUsualThanks(){
+  theUsualPlease(){
     this.theUsual = this.dataService.getChosenBeverage();
     this.displayTheUsual = false;
-    console.log("the usual comp, hämtad thechosenbev från serice", this.theUsual);
     this.theUsualEvent.emit(this.theUsual)
   }
 
   @Output()theUsualEvent = new EventEmitter<string>();
 
-  constructor(public dataService: DataService) {console.log("constructor the-usual", this.theUsual) 
-  ;}
+  constructor(public dataService: DataService) {}
 
     
 
-  ngOnInit(): void {
-    
-
-  
-  }
+  ngOnInit(): void {}
 
 }

@@ -81,19 +81,13 @@ export class DialogueComponent implements OnInit {
   // OwnChice Input
   ownChoiceInput(event){
     this.ownChoice = event.target.value;
-    console.log("dia comp ownchoiceinput", this.ownChoice);
   }
 
   //OwnChoice Button
   ownChoiceButton(){
     this.dataService.handleOwnChoice(this.ownChoice);
-    console.log("dia comp ownchoice button click");
-
     this.beverageData = this.dataService.getBeverageData();
     console.log("dia comp ownchoice button new beverageData", this.beverageData);
-    
-      
-    
   }
 //!
 
@@ -107,7 +101,6 @@ export class DialogueComponent implements OnInit {
   // EditNameInput
   editNameInput(event){
     this.editNameInputValue = event.target.value;
-    console.log('editNameINnput', this.editNameInputValue);
   }
 
   // EditNameButton

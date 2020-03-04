@@ -15,16 +15,18 @@ export class DataService {
     // Skickar data till dialogue component
     getBeverageData(): Beverage[]{
        // Kollar om data finns i localStorage
+      let data = localStorage.getItem('beverages');
+      console.log("getbeverageData service", data);
       
       // Om nej, spara standarddata i localStorage
-      if (localStorage.getItem('beverages') == undefined){
+      if (data == null){
         localStorage.setItem('beverages', JSON.stringify(this.beverageData))
-        console.log('getBeverageData ls', this.beverageData);
-        }
-
+        console.log('getBeverageData localstorage', this.beverageData);
+      }
       // Returnera beverageData
-      return JSON.parse(localStorage.getItem('beverages')) 
+      return JSON.parse(localStorage.getItem('beverages'));  
     }
+
 
    // Tar emot värde från component Dialogue
     updatedFirstName(firstName){
@@ -52,15 +54,12 @@ export class DataService {
 //! 
     // User ownChoice från dialogue.component
     handleOwnChoice(drink){
-      localStorage.setItem('ownChoice', drink);
       this.newBeverage = {name: drink}
       this.beverageData.push(this.newBeverage);
       console.log("handleOwnChoice service filen, push ownchoice to beverageData", this.beverageData);
       localStorage.setItem('beverages', JSON.stringify(this.beverageData));
       console.log("handleOwnChoice service filen, new beverageData", this.beverageData);
-      
-
-
+       
     }
 //!
   // Remove LocalStorage

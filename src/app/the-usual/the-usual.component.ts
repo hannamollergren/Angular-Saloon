@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
 })
 export class TheUsualComponent implements OnInit {
   // Tar emot valda dryck från service
-  theUsual: string = this.dataService.getChosenBeverage();
+  theUsual: string;
   displayTheUsual: boolean = true;
 
   // theUsualThanks button

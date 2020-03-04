@@ -36,7 +36,7 @@
     <p class="beverages" *ngFor="let data of beverageData">{{data.name}}<button class="choseBeverages" (click)= chosenBeveragesButton(data.name)>+</button></p>
     <div>
         <input placeholder="Your choice" (keyup)=ownChoiceInput($event)>
-        <button class="enterStranger" (click)="ownChoiceButton()">Enter</button>
+        <button class="enterStranger"(click)="ownChoiceButton()">Add</button>
     </div>
 </ng-container>
 

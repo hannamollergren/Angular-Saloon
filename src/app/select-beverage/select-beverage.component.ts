@@ -12,14 +12,12 @@ export class SelectBeverageComponent implements OnInit {
   beverageData: Beverage[];
 
   // Beorenden från service filen
-  constructor(public beverageService: DataService) {console.log("constructor beverage");
-}
+  constructor(public beverageService: DataService){}
 
 
   // Hämtar data från service filen
   ngOnInit(): void {
     this.beverageData = this.beverageService.getBeverageData();
-    console.log('beveragedata select-beverages', this.beverageData);
     this.beveragesEvent.emit(this.beverageData);
   }
   @Output()beveragesEvent = new EventEmitter<any>();

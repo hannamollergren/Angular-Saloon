@@ -1,8 +1,15 @@
 <!-- <app-right-to-be-forgotten></app-right-to-be-forgotten> -->
-<app-right-to-be-forgotten (forgetUser)="handleForgetUser($event)"></app-right-to-be-forgotten>
+<app-right-to-be-forgotten 
+(forgetUser)="handleForgetUser($event)"
+(forgetUserText)="handleForgetUserText($event)"
+[order]="order"
+
+></app-right-to-be-forgotten>
 <app-header></app-header>
 <!-- <app-dialogue></app-dialogue>  -->
 <app-dialogue
     [displayWelcome]="displayWelcome"
+    [welcomeStranger]="welcomeStranger"
     (userDidLogIn)="userDidLogIn()"
+    (clearOrder)="handleClearOrder($event)"
 ></app-dialogue>

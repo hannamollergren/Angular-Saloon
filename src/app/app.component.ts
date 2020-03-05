@@ -10,12 +10,20 @@ export class AppComponent implements OnInit{
   title = 'Lab1Angular';
   welcomeStranger: string;
   displayWelcome: boolean;
+  order: string;
 
   handleForgetUser(willPrintWelcome: boolean){
     this.displayWelcome = willPrintWelcome;   
   }
+  handleForgetUserText(printWelcomeText){
+    this.welcomeStranger = printWelcomeText;
+  }
   userDidLogIn(){
     this.displayWelcome =  false; 
+  }
+  handleClearOrder(clear){
+    this.order = clear;
+
   }
 
   constructor(public dataService: DataService) {}

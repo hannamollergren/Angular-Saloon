@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -9,18 +9,19 @@ import { DataService } from '../data.service';
 export class RightToBeForgottenComponent implements OnInit {
   welcomeStranger: string;
   displayWelcome: boolean; // Skicka till dialogue
+  @Input() order: string;
 
 
   forgetButton(){
     this.welcomeStranger = "Got it! Who are you again?";
-    //this.displayWelcome = true;
-    console.log("forget comp click");
-    console.log("right to forgotten comp", this.welcomeStranger);
+    this.order = "";
     this.beverageService.deleteLocalStorage();
     this.forgetUser.emit(true);
+    this.forgetUserText.emit(this.welcomeStranger)
   }
   
-  @Output()forgetUser = new EventEmitter<boolean>(); 
+  @Output()forgetUser = new EventEmitter<boolean>();
+  @Output() forgetUserText = new EventEmitter<string>(); 
  
 
   constructor(public beverageService: DataService) { }

@@ -6,3 +6,6 @@
 body{
 background-color: beige;
 }
+button{
+    cursor: pointer;
+}

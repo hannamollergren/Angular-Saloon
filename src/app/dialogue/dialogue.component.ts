@@ -19,7 +19,7 @@ export class DialogueComponent implements OnInit {
   whatCanIdo: string;
   chosenBeverage: string;
   ownChoice: string;
-  order: string; //One <chosen beverage>, coming right up!
+  @Output() order: string; //One <chosen beverage>, coming right up!
   displayTheUsual: boolean;
   displayTheUsualButton: boolean;
   theUsual: string;
@@ -57,16 +57,23 @@ export class DialogueComponent implements OnInit {
   // Button choseBeverage - användarens dryck
   chosenBeveragesButton(name: string){
     this.chosenBeverage = name; 
-    this.order = "One " + this.chosenBeverage + ", coming right up!"
     this.displayWhatCanIdo = false;
     this.displayBeverages = false;
     this.displayTheUsual = false
     this.displayEdit = false;
     this.displayEditInputButton = false;
     this.displayTheUsualButton = false;
+    this.order = "One " + this.chosenBeverage + ", coming right up!"
     // Skickar till servicefilen 
     this.dataService.updatedLastBeverage(this.chosenBeverage);
+    this.clearOrder.emit(this.order)
   }
+  @Output() clearOrder = new EventEmitter<string>();
+
+  
+ 
+  
+  
 
 //!
   // OwnChice Input

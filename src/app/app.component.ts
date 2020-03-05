@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,20 @@ export class AppComponent implements OnInit{
   welcomeStranger: string;
   displayWelcome: boolean;
 
-  //! Forget user
-  handleForgetUser(event){
-    this.welcomeStranger = event;  
+  handleForgetUser(willPrintWelcome: boolean){
+    this.displayWelcome = willPrintWelcome;   
+  }
+  userDidLogIn(){
+    this.displayWelcome =  false; 
   }
 
-  ngOnInit(){}
+  constructor(public dataService: DataService) {}
+
+  ngOnInit(){
+     if(this.dataService.getFirstName() == null){
+      this.displayWelcome = true;
+    }
+    
+  }
 }
 

@@ -2,4 +2,7 @@
 <app-right-to-be-forgotten (forgetUser)="handleForgetUser($event)"></app-right-to-be-forgotten>
 <app-header></app-header>
 <!-- <app-dialogue></app-dialogue>  -->
-<app-dialogue [welcomeStranger]="welcomeStranger"></app-dialogue>
+<app-dialogue
+    [displayWelcome]="displayWelcome"
+    (userDidLogIn)="userDidLogIn()"
+></app-dialogue>

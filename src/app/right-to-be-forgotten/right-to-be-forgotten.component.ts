@@ -12,16 +12,16 @@ export class RightToBeForgottenComponent implements OnInit {
 
 
   forgetButton(){
+    this.welcomeStranger = "Got it! Who are you again?";
+    //this.displayWelcome = true;
     console.log("forget comp click");
-    this.welcomeStranger = "Got it! Who are you again?"
     console.log("right to forgotten comp", this.welcomeStranger);
-    this.displayWelcome = true;
     this.beverageService.deleteLocalStorage();
-    this.forgetUser.emit(this.welcomeStranger);
-   /*  this.displayForgotten.emit(this.displayWelcome);  */
+    this.forgetUser.emit(true);
   }
-  @Output()forgetUser = new EventEmitter<string>(); 
-  /* @Output()displayForgotten = new EventEmitter<boolean>();  */  
+  
+  @Output()forgetUser = new EventEmitter<boolean>(); 
+ 
 
   constructor(public beverageService: DataService) { }
 

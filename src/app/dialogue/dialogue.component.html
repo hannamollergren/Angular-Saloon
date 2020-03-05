@@ -1,5 +1,5 @@
 
-<div *ngIf="displayEdit">
+<div *ngIf="displayEdit && !displayWelcome" >
     <div><button class="editButton" (click)="editName()">Edit name</button></div>
 </div>
 <div *ngIf="displayEditInputButton">
@@ -8,31 +8,31 @@
 
 
 
-<section *ngIf="displayWelcome"> <!--  den ska vara true när man klickar på forget me -->
+<section *ngIf="displayWelcome"> 
 <h2 class="welcome">{{welcomeStranger}}</h2>
 <div><input placeholder="Firstname" class="inputStranger" (keyup)="keyFirstName($event)"><input placeholder="Lastname" class="inputStranger" (keyup)="keyLastName($event)"><button class="enterStranger" (click)="enterName()">Enter</button></div>
 </section>
 
 
 
-<div *ngIf="displayWhatCanIdo">
+<div *ngIf="displayWhatCanIdo && !displayWelcome">
     <h2 class="welcome">{{whatCanIdo}}</h2>
 </div>
 <ng-container>
-    <div *ngIf="displayTheUsual">
+    <div *ngIf="displayTheUsual && !displayWelcome">
         <h2 class="welcomeReturning">
         {{welcomeReturningVisitor}}</h2>
     </div>
 
-    <div *ngIf="displayTheUsualButton">
+    <div *ngIf="displayTheUsualButton && !displayWelcome">
         <app-the-usual (theUsualEvent)="reciveTheUsual($event)"></app-the-usual> 
     </div>
 
-    <div *ngIf="displayTheUsual"><h2 class="or">OR...</h2></div>
+    <div *ngIf="displayTheUsual && !displayWelcome"><h2 class="or">OR...</h2></div>
     <h2 class="welcome">{{orderUsual}}</h2> 
 </ng-container>
 
-<ng-container *ngIf="displayBeverages">
+<ng-container *ngIf="displayBeverages && !displayWelcome">
     <p class="beverages" *ngFor="let data of beverageData">{{data.name}}<button class="choseBeverages" (click)= chosenBeveragesButton(data.name)>+</button></p>
     <div>
         <input placeholder="Your choice" (keyup)=ownChoiceInput($event)>
@@ -40,7 +40,9 @@
     </div>
 </ng-container>
 
+<div *ngIf="order && !displayWelcome">
 <h2 class="welcome">{{order}}</h2> 
+</div>
 
 
 <app-select-beverage (beveragesEvent)="reciveBeverages($event)"></app-select-beverage>

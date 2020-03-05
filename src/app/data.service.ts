@@ -10,7 +10,6 @@ export class DataService {
   
   beverageData: Beverage[] = [
     {name: 'Fanta'}, {name: 'Coca Cola'}, {name: 'Sprite'}, {name: 'Water'}, {name: 'Coffee'}, {name: 'Tea'}];
-  
 
     // Skickar data till dialogue component
     getBeverageData(): Beverage[]{
@@ -34,13 +33,11 @@ export class DataService {
     }
     
     updatedLastName(lastName){
-      localStorage.setItem('lastName', lastName);
-      console.log('updatedLastbev', lastName); 
+      localStorage.setItem('lastName', lastName); 
     }
 
     updatedLastBeverage(drink){
       localStorage.setItem('chosenBeverage', drink);
-      console.log('updatedLastbev', drink); 
     }
 
   // Hämtar firstname och getCHosenBev
@@ -58,8 +55,7 @@ export class DataService {
       this.beverageData.push(this.newBeverage);
       console.log("handleOwnChoice service filen, push ownchoice to beverageData", this.beverageData);
       localStorage.setItem('beverages', JSON.stringify(this.beverageData));
-      console.log("handleOwnChoice service filen, new beverageData", this.beverageData);
-       
+      console.log("handleOwnChoice service filen, new beverageData", this.beverageData);  
     }
 //!
   // Remove LocalStorage

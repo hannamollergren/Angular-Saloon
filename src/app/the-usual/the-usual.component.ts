@@ -15,7 +15,7 @@ export class TheUsualComponent implements OnInit {
   theUsualPlease(){
     this.theUsual = this.dataService.getChosenBeverage();
     this.displayTheUsual = false;
-    this.theUsualEvent.emit(this.theUsual)
+    this.theUsualEvent.emit(this.theUsual);
   }
 
   @Output()theUsualEvent = new EventEmitter<string>();
